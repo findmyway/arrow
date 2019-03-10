@@ -159,7 +159,7 @@ arrow_add_pkg_config("plasma")
 
 if(ARROW_PLASMA_JULIA_CLIENT)
   find_package(JlCxx REQUIRED)
-  add_library(plasma_julia SHARED lib/plasma_wrapper.cc)
+  add_library(plasma_julia SHARED lib/julia/plasma_wrapper.cc)
   target_link_libraries(plasma_julia
                         plasma_shared
                         ${PLASMA_LINK_LIBS}
