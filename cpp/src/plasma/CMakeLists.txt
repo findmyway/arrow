@@ -163,11 +163,7 @@ if(ARROW_PLASMA_JULIA_CLIENT)
   target_link_libraries(plasma_julia
                         plasma_shared
                         JlCxx::cxxwrap_julia
-                        ${PLASMA_LINK_LIBS}
-                        "-undefined dynamic_lookup"
-                        -Wl,-force_load,${FLATBUFFERS_STATIC_LIB}
-                        ${FLATBUFFERS_STATIC_LIB}
-                        ${PTHREAD_LIBRARY})
+                        )
   install(TARGETS plasma_julia 
           LIBRARY DESTINATION lib)
 endif()
