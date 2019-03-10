@@ -157,6 +157,20 @@ install(TARGETS plasma_store_server ${INSTALL_IS_OPTIONAL}
 # pkg-config support
 arrow_add_pkg_config("plasma")
 
+if(ARROW_PLASMA_JULIA_CLIENT)
+  find_package(JlCxx REQUIRED)
+  add_library(plasma_julia SHARED lib/plasma_wrapper.cc)
+  target_link_libraries(plasma_julia
+                        plasma_shared
+                        ${PLASMA_LINK_LIBS}
+                        "-undefined dynamic_lookup"
+                        -Wl,-force_load,${FLATBUFFERS_STATIC_LIB}
+                        ${FLATBUFFERS_STATIC_LIB}
+                        ${PTHREAD_LIBRARY})
+  install(TARGETS plasma_julia 
+          LIBRARY DESTINATION lib)
+endif()
+
 if(ARROW_PLASMA_JAVA_CLIENT)
   # Plasma java client support
   find_package(JNI REQUIRED)
