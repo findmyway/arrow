@@ -162,6 +162,7 @@ if(ARROW_PLASMA_JULIA_CLIENT)
   add_library(plasma_julia SHARED lib/julia/plasma_wrapper.cc)
   target_link_libraries(plasma_julia
                         plasma_shared
+                        JlCxx::cxxwrap_julia
                         ${PLASMA_LINK_LIBS}
                         "-undefined dynamic_lookup"
                         -Wl,-force_load,${FLATBUFFERS_STATIC_LIB}
